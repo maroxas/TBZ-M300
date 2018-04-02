@@ -2,6 +2,8 @@
 
 In diesem Projekt LB1 wurden zwei Versuche durchgeführt. Beim Versuch 1 sind die Services (Apache, MySQL und PHPMyAdmin) nur auf einem Server bzw. VM installiert. Beim Versuch 2 wurden die Services separiert in zwei VMs.
 
+-> Siehe Ordner /TBZ-M300/Versuch1 und /TBZ-M300/Versuch2
+
 **Ich bevorzuge den Versuch 1 zu korrigieren**, da beim Versuch 2 ungenaue Fehler aufgetreten sind, somit können die Services nicht getestet werden.
 
 # Testen
