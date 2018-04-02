@@ -21,6 +21,8 @@ Nachdem die von Vagrant ausgeführten Sachen ausgeführt sind, gehen Sie folgend
 
   - http://localhost:5000 in Web Browser aufrufen.
   
+  Erwartetes Ergebnis: Apache Webseite erreichbar.
+  
 4) PHPMyAdmin kontrollieren:
 
   - http://localhost:5000/phpmyadmin in Web Browser aufrufen
@@ -28,7 +30,11 @@ Nachdem die von Vagrant ausgeführten Sachen ausgeführt sind, gehen Sie folgend
   -> Username: root
   -> Password: test
   
+  Erwartetes Ergebnis: PHPMyAdmin Webseite erreichbar und Anmeldung erfolgreich.
+  
 5) DB Daten auf PHPMyAdmin kontrollieren
+
+  Erwartetes Ergebnis: DB Daten auf PHPMyAdmin ersichtlich.
 ```
 
 # Vagrantfile
