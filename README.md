@@ -1,65 +1,35 @@
-# TBZ-M300
-M300 Plattformübergreifende Dienste
+# TBZ - M300 Plattformübergreifende Dienste LB1
 
-# GraphQL Server
+In diesem Projekt LB1 wurden zwei Versuche durchdeführt. Beim Versuch 1 sind die Services (Apache, MySQL und PHPMyAdmin) nur auf einem Server bzw. VM installiert. Beim Versuch 2 wurden die Services separiert in zwei VMs.
 
-To run an GraphQL API Server we use Express, a web application framework for Node.js.
+**Ich bevorzuge den Versuch 1 zu korrigieren**, da beim Versuch 2 ungenaue Fehler aufgetreten sind, somit können die Services nicht getestet werden.
 
+# Testen
 
-### Prerequisites
-
-Before we get started, make sure you have **NodeJS and the NPM package manager installed** on your machine.
-We also recommend to use Ubuntu 16.04 or later.
-
-### Installing
-
-Install Express GraphQL:
+Folgen Sie die untenstehende Punkte, um die Services zu testen:
 
 ```
-sudo npm init
-sudo npm install express express-graphql graphql --save
+1) git clone https://github.com/maroxas/TBZ-M300/edit/master/
+2) vagrant up
+```
+Nachdem die von Vagrant ausgeführten Sachen ausgeführt sind, gehen Sie folgendes durch:
+```
+3) Apache Webserver kontrollieren:
+  - http://localhost:5000 in Web Browser aufrufen.
+4) PHPMyAdmin kontrollieren:
+  - http://localhost:5000/phpmyadmin in Web Browser aufrufen
+  -> Username: root
+  -> Password: test
+5) DB Daten auf PHPMyAdmin kontrollieren
 ```
 
-### Get Started
+## Vagrantfile
 
-Setup "express-graphql" as a route on your schema.js. We'll modify a "Hello World" example:
-
-```
-var express = require('express');
-var graphqlHTTP = require('express-graphql');
-var { buildSchema } = require('graphql');
-
-var schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
-
-var root = {
-  hello: () => {
-    return 'Hello world!';
-  },
-};
-
-var app = express();
-app.use('/graphql', graphqlHTTP({
-  schema: <YourSchema>,
-  rootValue: root,
-  graphiql: true,
-}));
-app.listen(4000);
-console.log('Running a GraphQL API server at localhost:4000/graphql');
-```
-
-## Testing
-
-Run GraphQL Server:
+Mit folgendem Befehl können Sie den Vagrantfile in VisualStudio o.a. anzeigen lassen:
 
 ```
-sudo node schema.js
+code Vagrantfile
 ```
-
-If you navigate in a web browser to http://localhost:4000/graphql, you should see an interface that lets you enter queries.
 
 ## Author
 
