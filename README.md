@@ -9,21 +9,27 @@ In diesem Projekt LB1 wurden zwei Versuche durchgeführt. Beim Versuch 1 sind di
 Folgen Sie die untenstehende Punkte, um die Services zu testen:
 
 ```
-1) git clone https://github.com/maroxas/TBZ-M300/edit/master/
+1) git clone https://github.com/maroxas/TBZ-M300/
 2) vagrant up
 ```
+
 Nachdem die von Vagrant ausgeführten Sachen ausgeführt sind, gehen Sie folgendes durch:
 ```
 3) Apache Webserver kontrollieren:
+
   - http://localhost:5000 in Web Browser aufrufen.
+  
 4) PHPMyAdmin kontrollieren:
+
   - http://localhost:5000/phpmyadmin in Web Browser aufrufen
+  
   -> Username: root
   -> Password: test
+  
 5) DB Daten auf PHPMyAdmin kontrollieren
 ```
 
-## Vagrantfile
+# Vagrantfile
 
 Mit folgendem Befehl können Sie den Vagrantfile in VisualStudio o.a. anzeigen lassen:
 
