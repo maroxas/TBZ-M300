@@ -1,0 +1,65 @@
+##################################
+# Author:    Marc Anthony Roxas
+# Project:  TBZ M300 LB1
+# Date:     17.03.2018
+##################################
+
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+#Please don't change it unless you know what you're doing.
+Vagrant.configure("2") do |config|
+  config.vm.define "lamp_lb1" do |config|
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.provider "virtualbox" do |config_vb|
+    config_vb.name = "lamp_lb1"
+    config_vb.cpus = "1"
+    config_vb.memory = "2048"
+end
+config.vm.provision "shell", inline: <<-SHELL
+  #Update/ Upgrade
+  sudo apt-get update 
+  sudo apt-get -y upgrade
+
+  #Install Debian configuration tool
+  sudo apt-get -y install debconf-utils
+
+  #Install and Configure MySQL
+  sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password test'
+  sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password test'
+  sudo apt-get -y install mysql-server
+  SHELL
+
+  Vagrant.configure("2") do |config|
+    config.vm.define "lamp_lb1_ws" do |config|
+    config.vm.box = "ubuntu/xenial64"
+    config.vm.provider "virtualbox" do |config_vb|
+      config_vb.name = "lamp_lb1_ws"
+      config_vb.cpus = "1"
+      config_vb.memory = "2048"
+    config.vm.network "forwarded_port", guest: 80, host: 5000
+  end
+config.vm.provision "shell", inline: <<-SHELL
+  #Update/ Upgrade
+  sudo apt-get update 
+  sudo apt-get -y upgrade
+
+  #Install Apache
+  sudo apt-get -y install apache2
+
+  # Install and Configure PHPmyAdmin
+  sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/dbconfig-install boolean true'
+  sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/setup-password password test'
+  sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/app-password-confirm password test'
+  sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/password-confirm password test'
+  sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2'
+
+  sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/mysql/admin-pass password test'
+  sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/mysql/app-pass password test'
+  sudo apt-get -y install phpmyadmin
+
+  SHELL
+end
+end
+end
+end
